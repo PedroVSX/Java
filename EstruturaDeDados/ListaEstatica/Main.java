@@ -25,6 +25,8 @@ public class Main {
 
         System.out.println(lista.contains(2));
 
+        System.out.println(lista.size());
+
         lista.clear();
         lista.show();
 
