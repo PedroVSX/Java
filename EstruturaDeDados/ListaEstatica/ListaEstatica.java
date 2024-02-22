@@ -2,23 +2,31 @@ package ListaEstatica;
 
 public class ListaEstatica {
 
-    private Integer[] vetor = new Integer[0];
+    private Object[] vetor = new Object[0];
     private int cont = 0;
 
-    public void add(int elem) {
+    public void add(Object elem) {
         if (cont == vetor.length) {
             aumentaArray();
         }
 
         vetor[cont] = elem;
         cont++;
-
     }
 
-    public void add(int pos, int elem) {
-        aumentaArray();
+    public void add(int pos, Object elem) {
+        if (cont == vetor.length) {
+            aumentaArray();
+        }
 
+        for (int i = cont; i > 0; i--) {
+            if(i > pos) {
+                vetor[i] = vetor[i-1];
+            }
+        }
 
+        vetor[pos] = elem;
+        cont++;
     }
 
     public int size() {
@@ -26,7 +34,8 @@ public class ListaEstatica {
     }
 
     public void clear() {
-
+        vetor = new Object[0];
+        cont = 0;
     }
 
     public boolean contains(Object obj) {
@@ -40,22 +49,35 @@ public class ListaEstatica {
     }
 
     public void remove(Object obj) {
-
-    }
-
-    public void remove(int pos) {
-        Integer[] novaLista = new Integer[vetor.length - 1];
+        ListaEstatica novaLista = new ListaEstatica();
+        boolean rmvd = false;
 
         for (int i = 0; i < cont; i++) {
-            if (i != pos) {
-                novaLista[i] = vetor[i];
+            if (vetor[i] != obj) {
+                novaLista.add(vetor[i]);
+            } else {
+                rmvd = !rmvd;
             }
         }
 
-        vetor = novaLista;
+        vetor = novaLista.getVetor();
+        cont--;
     }
 
-    public int get(int pos) {
+    public void remove(int pos) {
+        ListaEstatica novaLista = new ListaEstatica();
+
+        for (int i = 0; i < cont; i++) {
+            if (i != pos) {
+                novaLista.add(vetor[i]);
+            }
+        }
+
+        vetor = novaLista.getVetor();
+        cont--;
+    }
+
+    public Object get(int pos) {
         return vetor[pos];
     }
 
@@ -81,18 +103,19 @@ public class ListaEstatica {
         }
 
         System.out.println("]");
-
     }
 
     private void aumentaArray() {
-        Integer[] novoVetor = new Integer[vetor.length + 1];
+        Object[] novoVetor = new Object[vetor.length + 1];
 
         for (int i = 0; i < vetor.length; i++) {
             novoVetor[i] = vetor[i];
         }
 
         vetor = novoVetor;
-
+    }
+    private Object[] getVetor() {
+        return vetor;
     }
 
 }
