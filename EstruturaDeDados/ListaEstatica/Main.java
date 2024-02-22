@@ -8,10 +8,24 @@ public class Main {
 
         lista.add(1);
         lista.add(2);
+        lista.add("Bom dia");
         lista.add(3);
-        lista.add(4);
-        lista.add(5);
+        lista.show();
 
+        lista.add(4,"Oi");
+        lista.show();
+
+        lista.remove("Bom dia");
+        lista.show();
+
+        lista.remove(4);
+        lista.show();
+
+        System.out.println(lista.indexOf(3));
+
+        System.out.println(lista.contains(2));
+
+        lista.clear();
         lista.show();
 
     }
