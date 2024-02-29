@@ -15,8 +15,7 @@ B = True
 C = True
 D = True
 
-#form = input("Digite a fórmula: ")
-form = "A∧(A→B)" # 
+form = input("Digite a fórmula: ")
 formEscrita = ""
 formVars = []
 
