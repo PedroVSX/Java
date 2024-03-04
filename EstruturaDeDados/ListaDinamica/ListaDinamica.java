@@ -4,7 +4,6 @@ public class ListaDinamica {
 
     private Node primeiro;
     private Node ultimo;
-
     private int cont = 0;
 
     public void add(Object elem) {
