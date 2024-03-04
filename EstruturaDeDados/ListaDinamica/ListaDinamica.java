@@ -141,8 +141,7 @@ public class ListaDinamica {
     }
 
     public void show() {
-        Node aux = new Node(this.primeiro.dado);
-        aux.proximo = this.primeiro.proximo;
+        Node aux = primeiro;
 
         System.out.print("[");
         for (int i = 0; i < cont; i++) {
