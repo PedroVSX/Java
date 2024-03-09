@@ -8,13 +8,17 @@ public class ListaDinamica {
 
     public void add(Object elem) {
         Node novo = new Node(elem);
+        Node aux;
 
         if (this.primeiro == null){
             this.primeiro = novo;
             this.ultimo = novo;
+
         } else {
             ultimo.proximo = novo;
+            aux = ultimo;
             ultimo = novo;
+            ultimo.anterior = aux;
         }
 
         cont++;
@@ -30,6 +34,7 @@ public class ListaDinamica {
 
         novo.proximo = aux.proximo;
         aux.proximo = novo;
+        novo.anterior = aux.proximo;
 
         cont++;
     }
@@ -64,17 +69,23 @@ public class ListaDinamica {
         if (primeiro.dado == obj) {
             primeiro = primeiro.proximo;
             found = true;
+
+        } else if (ultimo.dado == obj) {
+            ultimo = ultimo.anterior;
+            found = true;
+
         } else {
-            for (int i = 0; i < cont - 1; i++) {
-                if (aux.proximo.dado == obj) {
-                    aux.proximo = aux.proximo.proximo;
+            for (int i = 1; i < cont - 1; i++) {
+                if (aux.dado == obj) {
                     found = true;
-                } else {
-                    aux = aux.proximo;
-                    ultimo.proximo = aux;
-                    ultimo = aux;
+                    break;
                 }
+
+                aux = aux.proximo;
             }
+
+            aux.anterior.proximo = aux.proximo;
+            aux.proximo.anterior = aux.anterior;
         }
 
         if (found) {
@@ -89,17 +100,23 @@ public class ListaDinamica {
         if (pos == 0) {
             primeiro = primeiro.proximo;
             found = true;
+
+        } else if (pos == cont - 1) {
+            ultimo = ultimo.anterior;
+            found = true;
+
         } else {
-            for (int i = 0; i < cont - 1; i++) {
-                if (i+1 == pos) {
-                    aux.proximo = aux.proximo.proximo;
+            for (int i = 1; i < cont - 1; i++) {
+                if (i == pos) {
                     found = true;
-                } else {
-                    aux = aux.proximo;
-                    ultimo.proximo = aux;
-                    ultimo = aux;
+                    break;
                 }
+
+                aux = aux.proximo;
             }
+
+            aux.anterior.proximo = aux.proximo;
+            aux.proximo.anterior = aux.anterior;
         }
 
         if (found) {
