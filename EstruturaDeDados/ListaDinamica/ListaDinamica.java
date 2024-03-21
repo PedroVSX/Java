@@ -33,8 +33,9 @@ public class ListaDinamica {
         }
 
         novo.proximo = aux.proximo;
+        aux.proximo.anterior = novo;
         aux.proximo = novo;
-        novo.anterior = aux.proximo;
+        novo.anterior = aux;
 
         cont++;
     }
