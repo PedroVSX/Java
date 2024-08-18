@@ -1,3 +1,5 @@
+import java.util.function.ToDoubleBiFunction;
+
 public class Unidade {
 
     private String endereco;
